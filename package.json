@@ -1,0 +1,19 @@
+{
+  "name": "mezon",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Mezon Top Board automation code",
+  "main": "index.js",
+  "scripts": {
+    "test":  "mocha srcs/specs/*.spec.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node.js": "^0.0.1-security",
+    "selenium-webdriver": "^4.33.0"
+  },
+  "devDependencies": {
+    "mocha": "^11.7.0"
+  }
+}
