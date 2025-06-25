@@ -31,8 +31,7 @@ export default class SearchPage extends BasePage {
     async getFirstResultText() {
         await this.driver.wait(until.elementLocated(this.searchResult), 5000);
         const element = await this.driver.findElement(this.searchResult);
-        // if (results.length === 0) return null;
-        // return await element.getText();
+       
         return await element.getText();
     }
 
@@ -136,7 +135,7 @@ async getTagsForAllResults() {
             const tagElements = await tagWrappers[0].findElements(By.css("span.ant-tag"));
             const tags = [];
             for (const tagEl of tagElements) {
-                const text = await tagEl.getText(); //  This can fail if tagEl becomes stale
+                const text = await tagEl.getText(); 
                 tags.push(text.trim());
             }
 
@@ -169,10 +168,10 @@ async clearSelectedTags(tagList) {
 
             await this.driver.executeScript("arguments[0].scrollIntoView({block: 'center'});", visibleTag);
             await this.driver.wait(until.elementIsVisible(visibleTag), 5000);
-            await this.driver.sleep(300); // let UI settle
+            await this.driver.sleep(300); 
 
-            await visibleTag.click(); // toggle to deselect
-            await this.driver.sleep(300); // wait for result to update
+            await visibleTag.click(); 
+            await this.driver.sleep(300); 
         } catch (err) {
             console.warn(`Could not clear tag "${tagName}":`, err.message);
         }
