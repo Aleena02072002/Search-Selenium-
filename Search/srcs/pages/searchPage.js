@@ -240,37 +240,37 @@ export default class SearchPage extends BasePage {
     }
 
     async selectSortOption(optionText) {
-    const dropdown = await this.driver.findElement(this.sort);
-    await this.driver.wait(until.elementIsVisible(dropdown), 5000);
-    await dropdown.click();
+        const dropdown = await this.driver.findElement(this.sort);
+        await this.driver.wait(until.elementIsVisible(dropdown), 5000);
+        await dropdown.click();
 
-    const optionLocator = By.xpath(`//div[contains(@class, "cursor-pointer")]//span[contains(text(), "${optionText}")]`);
-    const option = await this.driver.wait(until.elementLocated(optionLocator), 5000);
-    await this.driver.wait(until.elementIsVisible(option), 5000);
+        const optionLocator = By.xpath(`//div[contains(@class, "cursor-pointer")]//span[contains(text(), "${optionText}")]`);
+        const option = await this.driver.wait(until.elementLocated(optionLocator), 5000);
+        await this.driver.wait(until.elementIsVisible(option), 5000);
 
-    await option.click();
-    await this.waitForResultsToLoad();
-}
-
-async getCreationDatesFromAllResults() {
-    const cards = await this.driver.findElements(By.css("div.flex.flex-col.md\\:flex-row.items-start"));
-    const dates = [];
-
-    for (const card of cards) {
-        try {
-            const dateEl = await card.findElement(By.css("div.text-sm.text-gray-500")); // adjust selector to match your "created at"
-            const dateText = await dateEl.getText(); // e.g., "Created at: 2024-01-02"
-            const match = dateText.match(/\d{4}-\d{2}-\d{2}/);
-            if (match) {
-                dates.push(new Date(match[0]));
-            }
-        } catch {
-            dates.push(null);
-        }
+        await option.click();
+        await this.waitForResultsToLoad();
     }
 
-    return dates;
-}
+    async getCreationDatesFromAllResults() {
+        const cards = await this.driver.findElements(By.css("div.flex.flex-col.md\\:flex-row.items-start"));
+        const dates = [];
+
+        for (const card of cards) {
+            try {
+                const dateEl = await card.findElement(By.css("div.text-sm.text-gray-500")); // adjust selector to match your "created at"
+                const dateText = await dateEl.getText(); // e.g., "Created at: 2024-01-02"
+                const match = dateText.match(/\d{4}-\d{2}-\d{2}/);
+                if (match) {
+                    dates.push(new Date(match[0]));
+                }
+            } catch {
+                dates.push(null);
+            }
+        }
+
+        return dates;
+    }
 
 }
 
