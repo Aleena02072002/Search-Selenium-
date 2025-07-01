@@ -212,10 +212,6 @@ export default class SearchPage extends BasePage {
         return types;
     }
 
-    async getPaginationSizeOption(size) {
-        return By.xpath(`//div[contains(@class, "ant-select-item-option-content") and text()="${size}"]`);
-    }
-
 
     async selectPaginationSize(sizeText) {
 
@@ -258,8 +254,8 @@ export default class SearchPage extends BasePage {
 
         for (const card of cards) {
             try {
-                const dateEl = await card.findElement(By.css("div.text-sm.text-gray-500")); // adjust selector to match your "created at"
-                const dateText = await dateEl.getText(); // e.g., "Created at: 2024-01-02"
+                const dateEl = await card.findElement(By.css("div.text-sm.text-gray-500"));
+                const dateText = await dateEl.getText(); 
                 const match = dateText.match(/\d{4}-\d{2}-\d{2}/);
                 if (match) {
                     dates.push(new Date(match[0]));

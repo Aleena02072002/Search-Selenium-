@@ -5,7 +5,7 @@
   "description": "Mezon Top Board automation code",
   "main": "index.js",
   "scripts": {
-    "test":  "mocha srcs/specs/*.spec.js"
+    "test":  "mocha \"srcs/specs/*.spec.js\""
   },
   "author": "",
   "license": "ISC",

@@ -282,7 +282,7 @@ describe('Searching', function () {
         await driver.sleep(500);
         await searchPage.waitForResultsToLoad();
 
-        const resultTexts = await searchPage.getAllResultTexts(); // Implement this if needed
+        const resultTexts = await searchPage.getAllResultTexts(); 
         const tagLists = await searchPage.getTagsForAllResults();
 
         resultTexts.forEach((text, i) => {
